@@ -7,6 +7,7 @@ use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\EleccionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\VotoController;
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,3 +34,8 @@ Route::resource('eleccion', EleccionController::class);
 Route::resource('rol', RolController::class);
 
 Route::resource('voto', VotoController::class);
+
+Route::get('login',[LoginController::class, 'index'])->name('login');
+Route::get('login/facebook', [LoginController::class, 'redirectToFacebookProvider'] );
+Route::get('login/facebook/callback', [LoginController::class, 'handleProviderFacebookCallback']  );
+// Route::get('logout',[LoginController::class, 'logout']);
