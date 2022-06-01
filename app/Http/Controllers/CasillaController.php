@@ -4,9 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Casilla;
 use Illuminate\Http\Request;
+use \Barryvdh\DomPDF\Facade\Pdf;
 
 class CasillaController extends Controller
 {
+
+    public function generatepdf()
+    {
+        // $casillas = Casilla::all();
+        // $pdf = PDF::loadView('casilla/list', ['casillas' => $casillas]);
+        // return $pdf->download('archivo.pdf');
+
+        // $html = "<div style='text-align:center;'><h1>PDF generado desde etiquetas html</h1><br><h3>&copy;cardoso.dev</h3> </div>";
+        // $pdf = PDF::loadHTML($html);
+        // return $pdf->download('archivo.pdf');
+
+        $casillas = Casilla::all();
+        return PDF::loadView('casilla/list', ['casillas' => $casillas])->stream('archivo.pdf');
+    }
+
     /**
      * Display a listing of the resource.
      *
